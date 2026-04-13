@@ -10,10 +10,25 @@ namespace SpiralSec
     {//Class start
     static void Main(string[] args)
     {//Main start 
-    //C
+            //Creating an instance for ASCII logo
+            Spiral logo = new Spiral();
+            //Creating an instance for voice greeting
+            Play greeting = new Play();
+            //Creating an instance for user input 
+            User input = new User();
+            //Creating an instance for AIbot answers and exception handling
+            AIbot answers = new AIbot();
+
+            Spiral.ascii_logo("SpiralSecFinal");
 
 
-    }//Main end
+           
+
+    
+
+
+
+        }//Main end
 
 
 

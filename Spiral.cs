@@ -10,11 +10,11 @@ namespace SpiralSec
         public void ascii_logo()
         {//Start of constructor
          //Call the Ascii method
-            ascii();
+            ascii_logo();
         }//End of constructor
 
         //Ascii drawing method
-        private void ascii()
+        public void ascii(string v)
         {
             //path of the logo [ where the logo is ]
             string path = string.Empty;
