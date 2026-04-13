@@ -1,7 +1,7 @@
 ﻿using System;
 
 namespace SpiralSec
-{
+{//Namespace start
     public class User
     {
     //Global variable
@@ -15,7 +15,7 @@ namespace SpiralSec
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("--------------------------");
             Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine("[Welcome Chatbot]");
+            Console.WriteLine("[Welcome to SpiralSec Chatbot]");
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("--------------------------");
 
@@ -31,7 +31,7 @@ namespace SpiralSec
 
             //AI message and name with text color 
             Console.ForegroundColor = ConsoleColor.Green;
-            Console.Write("AI name:");
+            Console.Write("SpiralSec:");
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("Enter your name..");
 
@@ -59,6 +59,12 @@ namespace SpiralSec
 
         }//end of method ask_user
 
+        //Method to remember users name
+        public string GetUsername()
+        {
+            return username;
+        }
+
         //Boolean method to check the username if not empty
         private Boolean empty()
         {//Start of method
@@ -67,9 +73,9 @@ namespace SpiralSec
             {//Start of if 
              //Success message
                 Console.ForegroundColor = ConsoleColor.Blue;
-                Console.Write("AI NAME: ");
+                Console.Write("SpiralSec: ");
                 Console.ForegroundColor = ConsoleColor.Yellow;
-                Console.WriteLine("Hey" + username);
+                Console.WriteLine("Hey " + username + "!");
                 //Return true
                 return true;
             }//End of if
@@ -77,16 +83,12 @@ namespace SpiralSec
             {//Start of else
              //Error Message
                 Console.ForegroundColor = ConsoleColor.Blue;
-                Console.Write("AI NAME: ");
+                Console.Write("SpiralSec: ");
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("Please enter your name...");
                 //Return false
                 return false;
-
-
-
-
-            }//End of else
+             }//End of else
 
 
 
@@ -97,5 +99,5 @@ namespace SpiralSec
 
 
     }//class2
-}//namespace2
+}//Namespace end 
     

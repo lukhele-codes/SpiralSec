@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.IO;
 using System.Security.Policy;
 
 namespace SpiralSec
@@ -10,20 +11,21 @@ namespace SpiralSec
         public void ascii_logo()
         {//Start of constructor
          //Call the Ascii method
-            ascii_logo();
+            ascii();
         }//End of constructor
 
         //Ascii drawing method
-        public void ascii(string v)
+        public void ascii()
         {
             //path of the logo [ where the logo is ]
             string path = string.Empty;
-            //Auto get the full path
-            string fullpath = AppDomain.CurrentDomain.BaseDirectory;
-            //Now combine the paths.
-            path = fullpath.Replace(@"bin\Debug\", "SpiralSecFinal.png");
+            // Get the project root relative to the executable
+            string projectRoot = Directory.GetParent(AppDomain.CurrentDomain.BaseDirectory).Parent.Parent.FullName;
 
-            Bitmap image = new Bitmap(path);
+            // Combine with your file name
+            string paths = Path.Combine(projectRoot, "SpiralSecFinal.png");
+
+            Bitmap image = new Bitmap(paths);
 
             // Resize for better console fit
             int width = 150;

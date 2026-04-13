@@ -21,7 +21,7 @@ namespace SpiralSec
     string paths = AppDomain.CurrentDomain.BaseDirectory;
 
     //Then rename the path.
-    string fullpath = paths.Replace(@"bin\Debug\", "greet.wav");
+    string fullpath = paths.Replace(@"bin\Debug\", "SpiralSecAudio.wav");
 
     //Load the audio, then Play the audio after the instance.
     SoundPlayer voice_play = new SoundPlayer(fullpath);
