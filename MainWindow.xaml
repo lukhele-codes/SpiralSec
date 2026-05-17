@@ -7,19 +7,50 @@
         mc:Ignorable="d"
         Title="SpiralSecGUI" Height="800" Width="800">
     <Grid>
+    <Grid x:Name="Logo_grid">
         <!-- Image placement -->
-        <Image Source="/SpiralSecFinal.png"  Height="250" Width="250"/> <!-- Image placement -->
+        <Image Source="/SpiralSecFinal.png"  Height="250" Width="250"/> 
         
         <!-- Enter App Button -->
         
-        <Button  
+        <Button
          Height="50px"
          Width="200px"
          Content="Enter App"
          Margin="0,300px,0,0"
          Background="ForestGreen"
          Foreground="White"
+         Click="EnterApp_Click"
          />
+    </Grid><!-- End of logo and enter app grid -->
+    
+    
+    <!--Username page grid to prompt user -->
+
+    <Grid
+     x:Name="Username_grid"
+    Visibility="Hidden">
+
+        <!-- Start of username grid -->
+        <!-- Textbox to prompt user -->
+
+        <TextBox
+        x:Name="Username"
+        Height="50px"
+        Width="400px"
+     />
+
+        <!-- Button to submit username -->
+     <Button
+     Height="50px"
+     Width="200px"
+     Margin=" 0,200px,0,0"
+     Content="Submit"
+     Click="SubmitName"
+     />
+
+    </Grid>
+    <!-- End of username grid -->
 
     </Grid>
 </Window>
