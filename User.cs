@@ -1,42 +1,35 @@
-﻿using System.Security.Cryptography.X509Certificates;
+﻿using System.Linq;
 
 namespace SpiralSecGUI
-{//Namespace start
+{
     public class User
-    {//Class start
+    {
         public bool IsValid(string username, out string errorMessage)
-        {//Method start
-         //Getting username
-         if(string.IsNullOrWhiteSpace(username))
+        {
+            // Empty check
+            if (string.IsNullOrWhiteSpace(username))
             {
                 errorMessage = "Please enter a valid username.";
-                return false
+                return false;
             }
 
-            //Length check
+            // Length check
             if (username.Length < 3)
-            //Message displaying a minimum length requirement for the username
             {
                 errorMessage = "Username must be at least 3 characters long.";
                 return false;
             }
 
-            //Character check(letters + digits only)
+            // Character check (letters + digits only)
             if (!username.All(char.IsLetterOrDigit))
-            { 
-            errorMessage = "Username can only contain letters"
-            
+            {
+                errorMessage = "Username can only contain letters and numbers.";
+                return false;
             }
 
-            //If the username is valid return true
-            errorMessage = string.Empty
+            // If valid
+            errorMessage = string.Empty;
             return true;
-
-
-
-
-
-
-            }//Method end
-    }//Class end
-}//Namespace end 
+        }
+    }
+}

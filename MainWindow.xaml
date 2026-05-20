@@ -7,13 +7,14 @@
         mc:Ignorable="d"
         Title="SpiralSecGUI" Height="800" Width="800">
     <Grid>
-    <Grid x:Name="Logo_grid">
-        <!-- Image placement -->
-        <Image Source="/SpiralSecFinal.png"  Height="250" Width="250"/> 
-        
-        <!-- Enter App Button -->
-        
-        <Button
+        <!--Start of Parent Grid-->
+        <Grid x:Name="Logo_grid">
+            <!-- Image placement -->
+            <Image Source="/SpiralSecFinal.png"  Height="250" Width="250"/>
+
+            <!-- Enter App Button -->
+
+            <Button
          Height="50px"
          Width="200px"
          Content="Enter App"
@@ -22,26 +23,37 @@
          Foreground="White"
          Click="EnterApp_Click"
          />
-    </Grid><!-- End of logo and enter app grid -->
-    
-    
-    <!--Username page grid to prompt user -->
+        </Grid>
+        <!-- End of logo and enter app grid -->
 
-    <Grid
+
+        <!--Username page grid to prompt user -->
+
+        <Grid
      x:Name="Username_grid"
     Visibility="Hidden">
 
-        <!-- Start of username grid -->
-        <!-- Textbox to prompt user -->
+            <!-- Label to instruct user-->
+            <Label
+     Content="Please enter your username:"
+     Height="50px"
+     Width="400px"
+     Margin="0,0,0,10"
+     FontWeight="Bold"
+     Foreground="DarkBlue"
+     />
 
-        <TextBox
+            <!-- Start of username grid -->
+            <!-- Textbox to prompt user -->
+
+            <TextBox
         x:Name="Username"
         Height="50px"
         Width="400px"
      />
 
-        <!-- Button to submit username -->
-     <Button
+            <!-- Button to submit username -->
+            <Button
      Height="50px"
      Width="200px"
      Margin=" 0,200px,0,0"
@@ -49,8 +61,43 @@
      Click="SubmitName"
      />
 
-    </Grid>
-    <!-- End of username grid -->
+        </Grid>
+        <!-- End of username grid -->
 
-    </Grid>
+        <!-- Start of grid for chatting/conversation phase-->
+        <Grid
+        x:Name="chats_grid"
+            />
+
+
+        <!-- Start of chat grid -->
+            <!-- List view to show chats -->
+
+            <ListView
+    Height="400px"
+    Width="600px"
+    Margin="0,0,0,100px" 
+    x:Name="ChatListView"
+   />
+
+            <!-- The Question TextBox-->
+            <TextBox
+    Height="50px"
+    Width="200px"
+    Margin="0,350px,200px,0"
+    x:Name="Question"
+    />
+
+   <!-- Button to submit the question -->
+    <Button
+    Height="50px"
+    Width="50px"
+    Margin="220px,350px,0,0"
+    Content="Send Question"
+    Click="SendQuestion"
+    />
+
+
+        </Grid>
+
 </Window>
