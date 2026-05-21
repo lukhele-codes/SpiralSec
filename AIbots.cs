@@ -1,16 +1,18 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace SpiralSecGUI
 {
     public class AIbots
     {//Start of class
 
-        private ArrayList reply;
-        private ArrayList ignore;
+        private static ArrayList reply = new ArrayList();
+        private static ArrayList ignore = new ArrayList();
 
 
-
-        public AIbots(ArrayList reply, ArrayList ignore)
+        //Static constructor to initialize the reply and ignore lists when the class is first accessed
+        static AIbots()
         {//Start of constructor
             answers(reply);
 
@@ -22,7 +24,7 @@ namespace SpiralSecGUI
 
         //Method to store the list of words the AI BOT will reply to and also ignore
 
-        private void words(ArrayList ignoring)
+        private static void words(ArrayList ignoring)
         {//Start of method
          //Ignore questions 
             ignoring.Add("a");
@@ -303,7 +305,7 @@ namespace SpiralSecGUI
 
         //
 
-        public ArrayList answers(ArrayList add_answers)
+        private static ArrayList answers(ArrayList add_answers)
         {//start of method
 
 
@@ -398,20 +400,28 @@ namespace SpiralSecGUI
         }//End of method
 
         // Method to get a response based on user input
-        public string GetResponse(string userMessage)
+        public static string GetResponse(string userMessage)
         {
             string input = userMessage.ToLower().Trim();
+            Random rand = new Random();
 
-            // Loop through reply list
+            // Collect all possible matches
+            List<string> matches = new List<string>();
+
             foreach (string answer in reply)
             {
-                // Each answer starts with a keyword (e.g., "password", "phishing")
                 string keyword = answer.Split(' ')[0];
-
                 if (input.Contains(keyword))
                 {
-                    return answer; // return the full response
+                    matches.Add(answer);
                 }
+            }
+
+            // If matches found, pick one randomly
+            if (matches.Count > 0)
+            {
+                int index = rand.Next(matches.Count);
+                return matches[index];
             }
 
             return "I didn’t quite understand that. Could you rephrase?";
