@@ -6,98 +6,57 @@
         xmlns:local="clr-namespace:SpiralSecGUI"
         mc:Ignorable="d"
         Title="SpiralSecGUI" Height="800" Width="800">
-    <Grid>
-        <!--Start of Parent Grid-->
-        <Grid x:Name="Logo_grid">
-            <!-- Image placement -->
-            <Image Source="/SpiralSecFinal.png"  Height="250" Width="250"/>
-
-            <!-- Enter App Button -->
-
-            <Button
-         Height="50px"
-         Width="200px"
-         Content="Enter App"
-         Margin="0,300px,0,0"
-         Background="ForestGreen"
-         Foreground="White"
-         Click="EnterApp_Click"
-         />
+    <Grid><!-- Parent Gri-->
+        <!-- Logo grid (first page) -->
+        <Grid x:Name="LogoGrid" Visibility="Visible">
+            <Image Source="/SpiralSecFinal.png" Height="250" Width="350"/>
+            <Button Content="Enter App"
+                    Height="50"
+                    Width="150"
+                    Background="DarkGreen"
+                    Foreground="White"
+                    FontSize="16"
+                    Click="EnterApp_Click" Margin="325,522,325,212"/>
         </Grid>
-        <!-- End of logo and enter app grid -->
 
-
-        <!--Username page grid to prompt user -->
-
-        <Grid
-     x:Name="Username_grid"
-    Visibility="Hidden">
-
-            <!-- Label to instruct user-->
-            <Label
-     Content="Please enter your username:"
-     Height="50px"
-     Width="400px"
-     Margin="0,0,0,10"
-     FontWeight="Bold"
-     Foreground="DarkBlue"
-     />
-
-            <!-- Start of username grid -->
-            <!-- Textbox to prompt user -->
-
-            <TextBox
-        x:Name="Username"
-        Height="50px"
-        Width="400px"
-     />
-
-            <!-- Button to submit username -->
-            <Button
-     Height="50px"
-     Width="200px"
-     Margin=" 0,200px,0,0"
-     Content="Submit"
-     Click="SubmitName"
-     />
-
+        <!-- Username grid (second page) -->
+        <Grid x:Name="UsernameGrid" Visibility="Hidden">
+            <Label Content="Please enter your username:"
+                   Height="50"
+                   Margin="0,30,0,0"
+                   FontSize="16"
+                   Foreground="DarkBlue"/>
+            <Grid Margin="0,80,0,0">
+                <TextBox x:Name="UsernameBox"
+                         Width="300"
+                         Height="40"/>
+                <Button Content="Submit"
+                        Width="100"
+                        Height="40"
+                        Margin="320,0,0,0"
+                        Click="SubmitUsername"/>
+            </Grid>
         </Grid>
-        <!-- End of username grid -->
 
-        <!-- Start of grid for chatting/conversation phase-->
-        <Grid
-        x:Name="chats_grid"
-            />
-
-
-        <!-- Start of chat grid -->
-            <!-- List view to show chats -->
-
-            <ListView
-    Height="400px"
-    Width="600px"
-    Margin="0,0,0,100px" 
-    x:Name="ChatListView"
-   />
-
-            <!-- The Question TextBox-->
-            <TextBox
-    Height="50px"
-    Width="200px"
-    Margin="0,350px,200px,0"
-    x:Name="Question"
-    />
-
-   <!-- Button to submit the question -->
-    <Button
-    Height="50px"
-    Width="50px"
-    Margin="220px,350px,0,0"
-    Content="Send Question"
-    Click="SendQuestion"
-    />
-
-
+        <!-- Chat grid (third page) -->
+        <Grid x:Name="ChatGrid" Visibility="Hidden">
+            <ListView x:Name="ChatListView"
+                      Width="800"
+                      Height="400"
+                      Margin="0,30,0,0"
+                      FontSize="14"/>
+            <TextBox x:Name="QuestionBox"
+                     Width="600"
+                     Height="50"
+                     Margin="0,450,0,0"
+                     FontSize="14"
+                     />
+            <Button Content="Send Question"
+                    Width="100"
+                    Height="50"
+                    Margin="620,450,0,0"
+                    Click="SendQuestion"/>
         </Grid>
+    </Grid>
 
 </Window>

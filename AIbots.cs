@@ -400,39 +400,62 @@ namespace SpiralSecGUI
         }//End of method
 
         // Method to get a response based on user input
-        public static string GetResponse(string userMessage)
-        {
-            string input = userMessage.ToLower().Trim();
-            Random rand = new Random();
 
-            // Collect all possible matches
-            List<string> matches = new List<string>();
+        //Adding a memory function.
+        
+            private static List<string> conversationHistory = new List<string>();
 
-            foreach (string answer in reply)
+            public static string GetResponse(string userMessage)
             {
-                string keyword = answer.Split(' ')[0];
-                if (input.Contains(keyword))
+                string input = userMessage.ToLower().Trim();
+                Random rand = new Random();
+
+                // Save the user message into memory
+                conversationHistory.Add("User: " + userMessage);
+
+                // Collect all possible matches
+                List<string> matches = new List<string>();
+
+                foreach (string answer in reply)
                 {
-                    matches.Add(answer);
+                    string keyword = answer.Split(' ')[0];
+                    if (input.Contains(keyword))
+                    {
+                        matches.Add(answer);
+                    }
                 }
+
+                string response;
+
+                // If matches found, pick one randomly
+                if (matches.Count > 0)
+                {
+                    int index = rand.Next(matches.Count);
+                    response = matches[index];
+                }
+                else
+                {
+                    response = "I didn’t quite understand that. Could you rephrase?";
+                }
+
+                // Save the bot response into memory
+                conversationHistory.Add("Bot: " + response);
+
+                return response;
             }
 
-            // If matches found, pick one randomly
-            if (matches.Count > 0)
+            // Function to retrieve memory
+            public static List<string> GetHistory()
             {
-                int index = rand.Next(matches.Count);
-                return matches[index];
-            }
-
-            return "I didn’t quite understand that. Could you rephrase?";
-        }
-
-        //Need to add a randomizer
-
-
-
-
-
-
+                return conversationHistory;
+            }//End of method
     }//End of class
-}//End of namespace
+
+
+
+
+
+
+
+
+    }//End of namespace
