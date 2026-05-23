@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -10,6 +11,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
@@ -19,6 +21,8 @@ namespace SpiralSecGUI
     public partial class MainWindow : Window
     {//Start of class
 
+        // Field to store username
+        private string enteredName; 
 
         //Creating an instance for the class array.
         ArrayList reply = new ArrayList();
@@ -27,21 +31,22 @@ namespace SpiralSecGUI
         public MainWindow()
         {//Start of constructor
           InitializeComponent();
-          //Creating an instance of the AIbot class to respond without an object name.
-          new AIbots(reply, ignore);
         }//End of constructor 
+
+        AudioPlayer player = new AudioPlayer();
 
         private void EnterApp_Click(object sender, RoutedEventArgs e)
         {
             // Hide the logo grid and show the username grid
-            Logo_grid.Visibility = Visibility.Hidden;
-            Username_grid.Visibility = Visibility.Visible;
+            LogoGrid.Visibility = Visibility.Hidden;
+            UsernameGrid.Visibility = Visibility.Visible;
+            ChatGrid.Visibility = Visibility.Hidden;
         }
 
         // Validate username and proceed
-        private void SubmitName(object sender, RoutedEventArgs e)
+        private void SubmitUsername(object sender, RoutedEventArgs e)
         {
-            string enteredName = Username.Text;
+            enteredName = UsernameBox.Text;
             User validator = new User();
 
             if (!validator.IsValid(enteredName, out string errorMessage))
@@ -58,24 +63,45 @@ namespace SpiralSecGUI
             MessageBox.Show($"Welcome, {enteredName}! You can now enter the application.");
 
             // Switch grid
-            Username_grid.Visibility = Visibility.Hidden;
+            UsernameGrid.Visibility = Visibility.Visible;
+
+            ChatGrid.Visibility = Visibility.Visible;
+
+            //Slide animation for the chat grid 
+            Storyboard sbOut = (Storyboard)FindResource("SlideOutUsername");
+            Storyboard sbIn = (Storyboard)FindResource("SlideInChat");
+
+            sbOut.Begin();
+            sbIn.Begin();
+
+            //When username finishes sliding out, hide it
+            sbOut.Completed += (s, ev) =>
+            {
+                UsernameGrid.Visibility = Visibility.Hidden;
+            };
+
+
+
+            //Dynamic username display in the chat area
+            WelcomeLabel.Content = $"Welcome to SpiralSec, {enteredName}! Ask me anything.";
         }
+
 
         //Use the send button to send the message to the AI bot and get a response.
         private void SendQuestion(object sender, RoutedEventArgs e)
         {
-            string userMessage = Question.Text;
+            string userMessage = QuestionBox.Text;
             if (string.IsNullOrWhiteSpace(userMessage))
             {
-                MessageBox.Show("Please enter a message.");
+                MessageBox.Show($"Please enter a message before clicking Send , {enteredName}.");
                 return;
             }
             // Get AI response
             string aiResponse = AIbots.GetResponse(userMessage);
             // Display the response in the chat area
-            ChatListView.Items.Add($"You: {userMessage}");
-            ChatListView.Items.Add($"AI: {aiResponse}");
-            Question.Clear();
+            ChatListView.Items.Add($"{enteredName}: {userMessage}");
+            ChatListView.Items.Add($"SpiBot: {aiResponse}");
+            QuestionBox.Clear();
         }
     }
 }
