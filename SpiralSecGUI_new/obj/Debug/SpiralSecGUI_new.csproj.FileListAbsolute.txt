@@ -1,0 +1,17 @@
+C:\Users\bohla\source\repos\SpiralSecGUI_new\bin\Debug\SpiralSecGUI_new.exe.config
+C:\Users\bohla\source\repos\SpiralSecGUI_new\bin\Debug\SpiralSecGUI_new.exe
+C:\Users\bohla\source\repos\SpiralSecGUI_new\bin\Debug\SpiralSecGUI_new.pdb
+C:\Users\bohla\source\repos\SpiralSecGUI_new\obj\Debug\SpiralSecGUI_new.csproj.AssemblyReference.cache
+C:\Users\bohla\source\repos\SpiralSecGUI_new\obj\Debug\MainWindow.g.cs
+C:\Users\bohla\source\repos\SpiralSecGUI_new\obj\Debug\App.g.cs
+C:\Users\bohla\source\repos\SpiralSecGUI_new\obj\Debug\SpiralSecGUI_new_Content.g.cs
+C:\Users\bohla\source\repos\SpiralSecGUI_new\obj\Debug\SpiralSecGUI_new_MarkupCompile.cache
+C:\Users\bohla\source\repos\SpiralSecGUI_new\obj\Debug\SpiralSecGUI_new_MarkupCompile.lref
+C:\Users\bohla\source\repos\SpiralSecGUI_new\obj\Debug\MainWindow.baml
+C:\Users\bohla\source\repos\SpiralSecGUI_new\obj\Debug\SpiralSecGUI_new.g.resources
+C:\Users\bohla\source\repos\SpiralSecGUI_new\obj\Debug\SpiralSecGUI_new.Properties.Resources.resources
+C:\Users\bohla\source\repos\SpiralSecGUI_new\obj\Debug\SpiralSecGUI_new.csproj.GenerateResource.cache
+C:\Users\bohla\source\repos\SpiralSecGUI_new\obj\Debug\SpiralSecGUI_new.csproj.CoreCompileInputs.cache
+C:\Users\bohla\source\repos\SpiralSecGUI_new\obj\Debug\SpiralSecGUI_new.exe
+C:\Users\bohla\source\repos\SpiralSecGUI_new\obj\Debug\SpiralSecGUI_new.pdb
+C:\Users\bohla\source\repos\SpiralSecGUI_new\bin\Debug\SpiralSecAudio.wav
