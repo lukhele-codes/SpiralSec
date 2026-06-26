@@ -5,56 +5,104 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SpiralSecGUI"
         mc:Ignorable="d"
+        Background="Black"
         Title="SpiralSecGUI" Height="800" Width="800">
 
     <Window.Resources>
-        <!-- Slide Username out to the left -->
+        <!-- Slide Logo out to the left -->
+        <Storyboard x:Key="SlideOutLogo">
+            <DoubleAnimation Storyboard.TargetName="LogoTransform"
+                 Storyboard.TargetProperty="X"
+                 From="0" To="-800"
+                 Duration="0:0:0.5"/>
+            <DoubleAnimation Storyboard.TargetName="LogoGrid"
+                 Storyboard.TargetProperty="Opacity"
+                 From="1" To="0"
+                 Duration="0:0:0.5"/>
+        </Storyboard>
+
+        <!-- Slide Username in from the right -->
+        <Storyboard x:Key="SlideInUsername">
+            <DoubleAnimation Storyboard.TargetName="UsernameTransform"
+                 Storyboard.TargetProperty="X"
+                 From="800" To="0"
+                 Duration="0:0:0.5"/>
+            <DoubleAnimation Storyboard.TargetName="UsernameGrid"
+                 Storyboard.TargetProperty="Opacity"
+                 From="0" To="1"
+                 Duration="0:0:0.5"/>
+        </Storyboard>
+
+        <!-- Username slides out left and fades out-->
         <Storyboard x:Key="SlideOutUsername">
             <DoubleAnimation Storyboard.TargetName="UsernameTransform"
                  Storyboard.TargetProperty="X"
                  From="0" To="-800"
-                 Duration="0:0:0.5"
-                 AccelerationRatio="0.2"
-                 DecelerationRatio="0.8"/>
+                 Duration="0:0:0.5"/>
+            <DoubleAnimation Storyboard.TargetName="UsernameGrid"
+                 Storyboard.TargetProperty="Opacity"
+                 From="1" To="0"
+                 Duration="0:0:0.5"/>
+
         </Storyboard>
 
         <!-- Slide Chat in from the right -->
-        <Storyboard x:Key="SlideInChat">
+        <Storyboard x:Key="ChatIn">
             <DoubleAnimation Storyboard.TargetName="ChatTransform"
                  Storyboard.TargetProperty="X"
                  From="800" To="0"
-                 Duration="0:0:0.5"
-                 AccelerationRatio="0.2"
-                 DecelerationRatio="0.8"/>
+                 Duration="0:0:0.5"/>
+            <DoubleAnimation Storyboard.TargetName="ChatGrid"
+                             Storyboard.TargetProperty="Opacity"
+                             From="0" To="1"
+                             Duration="0:0:0.5"/>
         </Storyboard>
+
     </Window.Resources>
-    <Grid>
+
+    <DockPanel>
+        <!-- Sidebar -->
+        <StackPanel DockPanel.Dock="Left" Width="200" Background="LightGray">
+            <Button Content="Chatbot" Height="50" Margin="10" Click="OpenChatbot_Click"/>
+            <Button Content="Task Assistant" Height="50" Margin="10" Click="OpenTaskAssistant_Click"/>
+            <Button Content="Quiz" Height="50" Margin="10" Click="OpenQuiz_Click"/>
+            <Button Content="Activity Log" Height="50" Margin="10" Click="OpenActivityLog_Click"/>
+        </StackPanel>
+
+
+        <Grid>
         <!-- Parent Grid-->
         <!-- Logo grid (first page) -->
-        <Grid x:Name="LogoGrid" Visibility="Visible">
-            <Image Source="/SpiralSecFinal.png" Height="250" Width="350"/>
-            <Button Content="Enter App"
+        <Grid x:Name="LogoGrid" Visibility="Visible" Opacity="1">
+            <Grid.RenderTransform>
+                <TranslateTransform x:Name="LogoTransform" X="0"/>
+            </Grid.RenderTransform>
+            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                <Image Source="/SPIRALFINAL.png" MaxHeight="250" MaxWidth="350" HorizontalAlignment="Center" Margin="0,0,0,20"/>
+                <Button Content="Enter App"
                     Height="50"
                     Width="150"
                     Background="DarkGreen"
                     Foreground="White"
                     FontSize="16"
-                    Click="EnterApp_Click" Margin="325,522,325,212"/>
+                    Click="EnterApp_Click" Margin="0,0,0,20"
+                 />
+            </StackPanel>
         </Grid>
 
 
         <!-- Username grid (second page) -->
-        <Grid x:Name="UsernameGrid" Visibility="Hidden">
+        <Grid x:Name="UsernameGrid" Visibility="Hidden" Opacity="0">
             <Grid.RenderTransform>
-                <TranslateTransform x:Name="UsernameTransform" X="0"/>
-                </Grid.RenderTransform>
-                        <Label Content="Please enter your username:"
+                <TranslateTransform x:Name="UsernameTransform" X="800"/>
+            </Grid.RenderTransform>
+            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                <Label Content="Please enter your username:"
                    Height="50"
-                   Margin="0,30,0,0"
                    FontSize="16"
                    HorizontalAlignment="Center"
-                   Foreground="Black"/>
-            <Grid Margin="0,80,0,0">
+                   Foreground="White"
+                   Margin="0,0,0,20"/>
                 <TextBox x:Name="UsernameBox"
                          Width="300"
                          Height="40"/>
@@ -63,42 +111,89 @@
                         Foreground="White"
                         Width="100"
                         Height="40"
-                        Margin="320,0,0,0"
+                        Margin="0,0,0,20"
                         Click="SubmitUsername"/>
-            </Grid>
+            </StackPanel>
+
         </Grid>
 
         <!-- Chat grid (third page) -->
-        <Grid x:Name="ChatGrid" Visibility="Hidden">
+        <Grid x:Name="ChatGrid" Visibility="Hidden" Opacity="0">
             <Grid.RenderTransform>
-            <TranslateTransform x:Name="ChatTransform" X="0"/>
+                <TranslateTransform x:Name="ChatTransform" X="800"/>
             </Grid.RenderTransform>
-            <Label x:Name="WelcomeLabel"
-                   Height="50"
-                   Margin="0,30,0,0"
-                   FontSize="20"
-                   VerticalAlignment="Top"
-                   HorizontalAlignment="Center"
-                   Foreground="Black"/>
-            <ListView x:Name="ChatListView"
-                      Width="800"
-                      Height="400"
-                      Margin="0,30,0,0"
-                      FontSize="14"/>
-            <TextBox x:Name="QuestionBox"
-                     Width="600"
-                     Height="50"
-                     Margin="0,450,0,0"
+            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                <Label x:Name="WelcomeLabel" FontSize="20"
+                 Foreground="White"
+                 HorizontalAlignment="Center"
+                 Margin="0,0,0,20"/>
+
+
+                <ScrollViewer Height="300" Width="600" Margin="0,0,0,20">
+                    <ListView x:Name="ChatList"
+                              HorizontalAlignment="Stretch"
+                              VerticalAlignment="Stretch"/>
+                </ScrollViewer>
+
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+
+
+                    <TextBox x:Name="QuestionBox"
+                     Width="400"
+                     Height="50" 
                      FontSize="14"
-                     />
-            <Button Content="Send Question"
-                    Width="100"
+                     Margin="0,0,10,0"/>
+
+
+                    <Button Content="Send"
+                    Width="150"
                     Height="50"
-                    Margin="620,450,0,0"
                     Background="DarkGreen"
                     Foreground="White"
                     Click="SendQuestion"/>
-        </Grid>
-    </Grid><!-- End of Parent Grid -->
+                </StackPanel>
+            </StackPanel>
+
+
+                <!-- Quiz grid (fourth page) -->
+                <Grid x:Name="QuizGrid" Visibility="Hidden" Opacity="0">
+                    <Grid.RenderTransform>
+                        <TranslateTransform x:Name="QuizTransform" X="800"/>
+                    </Grid.RenderTransform>
+
+                    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                        <Label Content="Cybersecurity Quiz"
+                   FontSize="20"
+                   Foreground="White"
+                   HorizontalAlignment="Center"
+                   Margin="0,0,0,20"/>
+
+                        <TextBlock x:Name="QuizOutput"
+                       TextWrapping="Wrap"
+                       Width="500"
+                       Height="300"
+                       Foreground="White"
+                       Margin="0,0,0,20"/>
+
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                            <Button Content="Answer 1" Width="100" Margin="5" Click="Answer1_Click"/>
+                            <Button Content="Answer 2" Width="100" Margin="5" Click="Answer2_Click"/>
+                            <Button Content="Answer 3" Width="100" Margin="5" Click="Answer3_Click"/>
+                            <Button Content="Answer 4" Width="100" Margin="5" Click="Answer4_Click"/>
+                        </StackPanel>
+
+                        <Button Content="Back to Chatbot"
+                    Width="200"
+                    Height="40"
+                    Background="DarkGreen"
+                    Foreground="White"
+                    Margin="0,20,0,0"
+                    Click="BackToChatbot_Click"/>
+                    </StackPanel>
+                    
+                    
+                </Grid>
+    </Grid>
+    <!-- End of Parent Grid -->
 
 </Window>
