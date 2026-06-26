@@ -82,6 +82,30 @@ README updated to reflect progress and features.
 7. Future Enhancements
 Sequential cycling of tips (instead of random).
 
+
+## Part 3Features
+
+- **Chatbot Interface**
+  - Responds to user questions about cybersecurity.
+  - Provides guidance on safe practices (phishing, passwords, malware, etc.).
+  - Personalized greetings with username validation.
+
+- **Cybersecurity Quiz**
+  - 15 multiple-choice questions covering key topics.
+  - Instant feedback on answers.
+  - Final score summary with tailored encouragement.
+
+- **Task Assistant 
+  - Placeholder for productivity and task management integration.
+
+- **Activity Log 
+  - Placeholder for tracking user interactions and progress.
+
+- **UI Enhancements**
+  - Animated transitions between pages (logo → username → chat → quiz).
+  - Clean sidebar navigation.
+  - Dark theme with accent colors for readability.
+
 Persistent memory across sessions (saving interests to file/database).
 
 Dark mode toggle in WPF (black background option).
